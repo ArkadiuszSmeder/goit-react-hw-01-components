@@ -7,7 +7,7 @@ import { Profile } from './components/Profile';
 function App() {
     return (
       <div className="App">
-        <h1>Moja strona React</h1> 
+        <h1>React homework template</h1> 
   
         <Profile
           username={user.username}
