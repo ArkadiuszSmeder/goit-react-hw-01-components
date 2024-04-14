@@ -1,23 +1,37 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import { StyledProfile, Description, Avatar, Name, Tag, Location, Stats, Stat, StatLabel, StatQuantity } from './styled-profile'
 
 export const Profile = ({ username, tag, location, avatar, stats }) => {
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt="User avatar" className="avatar" />
-        <p className="name">{username}</p>
-        <p className="tag">{tag}</p>
-        <p className="location">{location}</p>
-      </div>
+    <StyledProfile>
+      <Description>
+        <Avatar src={avatar} alt="User avatar"/>
+        <Name>{username}</Name>
+        <Tag>{tag}</Tag>
+        <Location>{location}</Location>
+      </Description>
 
-      <ul className="stats">
+      <Stats>
         {Object.entries(stats).map(([label, quantity]) => (
-          <li key={label}>
-            <span className="label">{label}</span>
-            <span className="quantity">{quantity}</span>
-          </li>
+            <Stat key={label}>
+              <StatLabel className="label">{label}</StatLabel>
+              <StatQuantity className="quantity">{quantity}</StatQuantity>
+            </Stat>
         ))}
-      </ul>
-    </div>
+      </Stats>
+    </StyledProfile>
   );
+};
+
+Profile.propTypes = {
+  username: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired,
+  location: PropTypes.number.isRequired,
+  avatar: PropTypes.number.isRequired,
+  stats: PropTypes.shape({
+    followers: PropTypes.number.isRequired,
+    views: PropTypes.number.isRequired,
+    likes: PropTypes.number.isRequired,
+  }).isRequired, 
 };
